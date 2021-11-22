@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+<title>Apply</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <script src="static/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/js/bootstrap.min.js">
+    <!-- pace here the links to the original dashboard to display the various commands -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Apply</h4>
+                                </div>
+                                <form method="POST" action="">
+                                    {{ form.csrf_token() }}
+                                    {% for field in form if field.name != "csrf_token" %}
+                                
+                                        <p>{{ field.label() }}</p>
+                                        <p>{{ field }}
+                                            {% for error in field.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </p>        
+                                    {% endfor %}
+                                    <p><input type="submit" name="btn" value="submit"></p>    
+                                </form>
+                                <div class="card-body">
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        {{ form.csrf_token() }}
+                                        {% for field in form if field.name != "csrf_token" %}   
+
+                                        {% if field.name == "full_name" %}
+                                        <div class="row">
+                                            <div class="col-md-8 px-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        {% elif field.name == "gender" %}    
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">      
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(name="inlineRadioOptions") }}     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% elif field.name == "phone_no" %}          
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }} 
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        {% elif field.name == "village" %}   
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }} 
+                                                </div>
+                                            </div>
+                                        {% elif field.name == "parish" %}          
+                                            <div class="col-md-3 pl-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }} 
+                                                </div>
+                                            </div>     
+                                        </div>
+                                        {% elif field.name == "d_o_birth" %}  
+                                        <div class="row">
+                                            <div class="col-md-3 pr-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}  
+                                                </div>
+                                            </div>
+                                        {% elif field.name == "age" %}      
+                                            <div class="col-md-2 px-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        {% elif field.name == "m_status" %}    
+                                            <div class="col-md-5 pl-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(name="inlineRadioOptions") }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% elif field.name == "year_of_entry" %}    
+                                            <div class="col-md-8 pl-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        {% elif field.name == "l_o_educ" %}
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        {% elif field.name == "guardian_name" %} 
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>   
+                                        </div>
+                                        {% elif field.name == "guardian_contact" %}
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                            {% elif field.name == "nationality" %}    
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% elif field.name == "next_of_kin" %}
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                            {% elif field.name == "next_of_kin_contact" %}    
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            {% elif field.name == "religion" %}    
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                            
+                                        </div> 
+                                        
+                                        {% elif field.name == "skills" %}
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% else %}
+                                            <p>{{ field.label() }}</p>
+                                            <p>{{ field }}
+                                                {% for error in field.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </p>
+                                        {% endif %}
+
+                                        {% endfor %}                  
+                                        <button type="submit" class="btn btn-info">save</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+</body>
+</html>
+

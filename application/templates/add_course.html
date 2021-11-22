@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+<title>Apply</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <script src="static/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/js/bootstrap.min.js">
+    <!-- pace here the links to the original dashboard to display the various commands -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Apply</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        {{ form.csrf_token() }}
+                                        {% for field in form if field.name != "csrf_token" %}   
+
+                                        {% if field.name == "title" %}
+                                        <div class="row">
+                                            <div class="col-md-8 px-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% elif field.name == "duration" %}          
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }} 
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        {% elif field.name == "course_code" %}   
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    {{ field.label(class_="control-label") }}
+                                                    {{ field(class_="form-control") }} 
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        {% else %}
+                                            <p>{{ field.label() }}</p>
+                                            <p>{{ field }}
+                                                {% for error in field.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </p>
+                                        {% endif %}
+
+                                        {% endfor %}                  
+                                        <button type="submit" class="btn btn-info">save</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>

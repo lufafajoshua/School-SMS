@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<title>Verify Applicant</title>
+<body>
+<h1>{{applicant.name}}</h1>
+
+
+<p>Results Summary
+<p>Points:{{ results.total_cut_points }}</p> 
+{% for subject in results.subject %}
+{{ subject.subject_name }}
+{% endfor %}
+<p>Course Cut Points::{{ cut_points }}</p>
+<p>Course Subjects::{{ subjects }}</p>
+<p>Result Subjects::{{ result_subjects }}</p>
+<p>Result Points::{{ result_points }}</p>
+{% for subject in subject %}
+{{ subject.subject_name }}
+{% endfor %}
+</p>
+
+<ul>
+    <li>
+        {{ course.title}}  
+        <p>Cut Off Points:{{ course.cut_off_points}}</p>
+        <p>Required Subjects
+        <p>{% for subject in course.requirement %}</p>
+        {{ subject.subject_name }}
+        </p>
+        {% endfor %}
+        
+    </li>
+</ul>
+ 
+</p>
+</body>
+</html>

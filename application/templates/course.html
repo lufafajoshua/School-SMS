@@ -1,0 +1,44 @@
+<!-- create a folder named templates, put this file into it -->
+<!DOCTYPE html>
+<title>Course</title>
+<body>
+<h1>Course Details</h1>
+
+{% for applicant in course.applicant_data %}
+<ul>
+    <li>
+        {{ applicant.full_name}}
+        <a class="action" href="{{ url_for('verification', course_id=course.id, id=applicant.id) }}">View applicant</a>
+        <a class="action" href="{{ url_for('course_auto_admit', course_id=course.id, id=applicant.id) }}">Auto Admit</a>
+    </li>
+</ul>
+{% endfor %}
+
+<form method="POST" action="">
+    {{ form.csrf_token() }}
+    {% for field in form if field.name != "csrf_token" %}
+
+        <p>{{ field.label() }}</p>
+        <p>{{ field }}
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+        </p>        
+    {% endfor %}
+    <a class="action" href="{{ url_for('add_requirements', id=course.id) }}">Add Requirements</a>  
+</form>
+
+{{ course.requirement }}
+
+<h6>Students</h6>
+{% for student in course.students %}
+<ul>
+    <li>
+        {{ student.applicant.full_name}}
+        <a class="action" href="{{ url_for('view_student', id=student.id) }}">View student</a>
+    </li>
+</ul>
+{% endfor %}
+</body>
+</html>
+

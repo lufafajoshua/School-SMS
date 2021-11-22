@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<title>Verify Applicant</title>
+<body>
+<h1>{{applicant.name}}</h1>
+
+
+<a class="action" href="{{ url_for('view_applicant', id=applicant.id) }}">View Applicant</a>
+<p>Results Summary
+<p>Points:{{ results.total_cut_points }}</p> 
+{% for subject in results.subject %}
+{{ subject.subject_name }}
+{% endfor %}
+</p>
+
+<p>Courses Applied For by the Applicant
+{% for course in courses %}
+<ul>
+    <li>
+        {{ course.title}}  
+        <p>Cout Off Points:{{ course.cut_off_points}}</p>
+        <p>Required Subjects
+        <p>{% for subject in course.requirement %}</p>
+        {{ subject.subject_name }}
+        </p>
+        {% endfor %}
+        
+    </li>
+</ul>
+{% endfor %} 
+<a class="action" href="{{ url_for('course_admit', course_id=course.id, id=applicant.id) }}">Admit Applicant</a>
+</p>
+</body>
+</html>
+
+

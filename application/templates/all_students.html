@@ -1,0 +1,17 @@
+<!-- create a folder named templates, put this file into it -->
+<!DOCTYPE html>
+<title>Course</title>
+<body>
+<h1>All Students</h1>
+
+<h6>Students</h6>
+{% for student in students %}
+<ul>
+    <li>
+        {{ student.applicant.full_name}}
+        <a class="action" href="{{ url_for('view_student', id=student.id) }}">View student</a>
+    </li>
+</ul>
+{% endfor %}
+</body>
+</html>
